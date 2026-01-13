@@ -4,6 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+});
+
 import { SHAPE_LIMITS } from "../utils/config";
 import { handlePolygonOverlap } from "../utils/overlap";
 import { exportGeoJSON } from "../services/exportGeoJSON";
